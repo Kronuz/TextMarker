@@ -1,0 +1,25 @@
+[
+    {
+        "id": "tools",
+        "children":
+        [
+            {
+                "caption": "Word Highlights",
+                "children":
+                [
+                    {
+                        "caption": "Word Highlights",
+                        "command": "word_highlights",
+                        "mnemonic": "C",
+                        "checkbox": true
+                    },
+                    {
+                        "caption": "Reset Word Highlights",
+                        "command": "word_highlights_reset",
+                        "mnemonic": "R"
+                    }
+                ]
+            }
+        ]
+    }
+]

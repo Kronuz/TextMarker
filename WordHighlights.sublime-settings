@@ -1,0 +1,105 @@
+/*
+	WordHighlights default settings
+*/
+{
+	/* AUTO WORD HIGHLIGHT
+		Use this in your user prefs to avoid automatically highlighting words
+		as you move the cursor.
+	*/
+	"word_highlights": true,
+
+	/* COLOR OPTIONS
+		Normally the color of the highlights is the same as the color of comments
+		in your code. If you'd like to customize the color, add this to your user
+		preferences file, then add the below to your color scheme file and change
+		FFE792, 84FF80, 4CB4FF and FD7C82 to whatever color you want:
+
+		---ADD TEXT BELOW THIS LINE TO YOUR USER PREFERENCES FILE---
+			"word_highlights_color_scope_name": [
+				"comment",
+				"wordhighlights1",
+				"wordhighlights2",
+				"wordhighlights3",
+				"wordhighlights4"
+			],
+		---ADD TEXT ABOVE THIS LINE TO YOUR USER PREFERENCES FILE---
+
+		---ADD TEXT BELOW THIS LINE TO YOUR COLOR SCHEME FILE---
+				<dict>
+					<key>name</key>
+					<string>WordHighlights</string>
+					<key>scope</key>
+					<string>wordhighlights1</string>
+					<key>settings</key>
+					<dict>
+						<key>background</key>
+						<string>#FFE792</string>
+						<key>caret</key>
+						<string>#FFE792</string>
+						<key>foreground</key>
+						<string>#000000</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>name</key>
+					<string>WordHighlights</string>
+					<key>scope</key>
+					<string>wordhighlights2</string>
+					<key>settings</key>
+					<dict>
+						<key>background</key>
+						<string>#84FF80</string>
+						<key>caret</key>
+						<string>#84FF80</string>
+						<key>foreground</key>
+						<string>#000000</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>name</key>
+					<string>WordHighlights</string>
+					<key>scope</key>
+					<string>wordhighlights3</string>
+					<key>settings</key>
+					<dict>
+						<key>background</key>
+						<string>#4CB4FF</string>
+						<key>caret</key>
+						<string>#4CB4FF</string>
+						<key>foreground</key>
+						<string>#000000</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>name</key>
+					<string>WordHighlights</string>
+					<key>scope</key>
+					<string>wordhighlights4</string>
+					<key>settings</key>
+					<dict>
+						<key>background</key>
+						<string>#FD7C82</string>
+						<key>caret</key>
+						<string>#FD7C82</string>
+						<key>foreground</key>
+						<string>#000000</string>
+					</dict>
+				</dict>
+		---ADD TEXT ABOVE THIS LINE TO YOUR COLOR SCHEME FILE---
+	*/
+	"word_highlights_color_scope_name": [
+		"comment"
+	],
+
+	/* DRAW OUTLINED
+		Use this in your user prefs to make the highlights be drawn as outlines
+		instead of as filled highlights.
+	*/
+	"word_highlights_draw_outlined": false,
+
+	/* HIGHLIGHT WORDS WHEN SELECTION IS EMPTY
+		Use this in your user prefs to make words highlight when the insertion point
+		is inside of them but they're not actually selected.
+	*/
+	"word_highlights_when_selection_is_empty": true
+}

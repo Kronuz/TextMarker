@@ -1,0 +1,26 @@
+[
+    {
+        "caption": "WordHighlight: Highlight Selection [1]",
+        "command": "word_highlights",
+        "args": {"current": 1}
+    },
+    {
+        "caption": "WordHighlight: Highlight Selection [2]",
+        "command": "word_highlights",
+        "args": {"current": 2}
+    },
+    {
+        "caption": "WordHighlight: Highlight Selection [3]",
+        "command": "word_highlights",
+        "args": {"current": 3}
+    },
+    {
+        "caption": "WordHighlight: Highlight Selection [4]",
+        "command": "word_highlights",
+        "args": {"current": 4}
+    },
+    {
+        "caption": "WordHighlight: Reset",
+        "command": "word_highlights_reset"
+    }
+]
