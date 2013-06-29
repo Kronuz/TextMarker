@@ -69,7 +69,7 @@ def highlight(view, current=0, when_selection_is_empty=False):
                         regions += view.find_all('\\b' + regex_escape(string) + '\\b')
                     else:
                         regions += view.find_all(regex_escape(string))
-    view.add_regions('WordHighlights%s' % current, regions, color_scope_name[current % len(color_scope_name)], draw_outlined)
+    view.add_regions('WordHighlights%s' % current, regions, color_scope_name[current % len(color_scope_name)], '', draw_outlined)
 
 
 def reset(view):
