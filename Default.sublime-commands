@@ -22,5 +22,9 @@
     {
         "caption": "WordHighlight: Reset",
         "command": "word_highlights_reset"
+    },
+    {
+        "caption": "WordHighlight: Toggle Live Highlight",
+        "command": "word_highlights_toggle"
     }
 ]

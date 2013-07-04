@@ -89,6 +89,28 @@ class WordHighlightsListener(sublime_plugin.EventListener):
         reload_settings(view)
 
 
+class WordHighlightsToggleCommand(sublime_plugin.TextCommand):
+    _word_highlights = None
+    _word_highlights_when_selection_is_empty = None
+
+    def run(self, edit, block=False):
+        settings = self.view.settings()
+        _word_highlights = settings.get('word_highlights', True)
+        _word_highlights_when_selection_is_empty = settings.get('word_highlights_when_selection_is_empty', True)
+        if self.__class__._word_highlights is None:
+            self.__class__._word_highlights = _word_highlights
+        if self.__class__._word_highlights_when_selection_is_empty is None:
+            self.__class__._word_highlights_when_selection_is_empty = _word_highlights_when_selection_is_empty
+        if _word_highlights_when_selection_is_empty and _word_highlights:
+            settings.set('word_highlights', self.__class__._word_highlights)
+            settings.set('word_highlights_when_selection_is_empty', self.__class__._word_highlights_when_selection_is_empty)
+            reset(self.view)
+        else:
+            settings.set('word_highlights', True)
+            settings.set('word_highlights_when_selection_is_empty', True)
+            highlight(self.view, 0, True)
+
+
 class WordHighlightsResetCommand(sublime_plugin.TextCommand):
     def run(self, edit, block=False):
         reset(self.view)
