@@ -101,5 +101,5 @@
 		Use this in your user prefs to make words highlight when the insertion point
 		is inside of them but they're not actually selected.
 	*/
-	"word_highlights_when_selection_is_empty": false
+	"word_highlights_when_selection_is_empty": true
 }
