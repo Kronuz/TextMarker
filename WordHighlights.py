@@ -85,6 +85,12 @@ class WordHighlightsListener(sublime_plugin.EventListener):
         if settings.get('word_highlights', True):
             highlight(view, 0, settings.get('word_highlights_when_selection_is_empty', False))
 
+    def on_new(self, view):
+        reload_settings(view)
+
+    def on_clone(self, view):
+        reload_settings(view)
+
     def on_load(self, view):
         reload_settings(view)
 
