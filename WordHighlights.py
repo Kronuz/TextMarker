@@ -44,7 +44,7 @@ def regex_escape(string):
 def highlight(view, current=0, when_selection_is_empty=False):
     settings = view.settings()
     color_scope_name = settings.get('word_highlights_color_scope_name', DEFAULT_COLOR_SCOPE_NAME)
-    draw_outlined = bool(settings.get('word_highlights_draw_outlined')) * sublime.DRAW_OUTLINED
+    draw_outlined = sublime.DRAW_OUTLINED if settings.get('word_highlights_draw_outlined') else 0
     word_separators = settings.get('word_separators')
 
     if len(view.sel()) > 1:
@@ -69,7 +69,7 @@ def highlight(view, current=0, when_selection_is_empty=False):
                         regions += view.find_all('\\b' + regex_escape(string) + '\\b')
                     else:
                         regions += view.find_all(regex_escape(string))
-    view.add_regions('WordHighlights%s' % current, regions, color_scope_name[current % len(color_scope_name)], '', draw_outlined)
+    view.add_regions('WordHighlights%s' % current, regions, color_scope_name[current % len(color_scope_name)], '', draw_outlined | sublime.PERSISTENT)
 
 
 def reset(view):
