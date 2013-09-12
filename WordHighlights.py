@@ -19,9 +19,10 @@ def settings_changed():
 
 def reload_settings(view):
     '''Restores user settings.'''
-    settings = sublime.load_settings(__name__ + '.sublime-settings')
-    settings.clear_on_change(__name__)
-    settings.add_on_change(__name__, settings_changed)
+    settings_name = 'WordHighlights'
+    settings = sublime.load_settings(settings_name + '.sublime-settings')
+    settings.clear_on_change(settings_name)
+    settings.add_on_change(settings_name, settings_changed)
 
     for setting in ALL_SETTINGS:
         if settings.get(setting) is not None:
