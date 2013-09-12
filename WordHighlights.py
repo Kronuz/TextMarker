@@ -48,11 +48,12 @@ def highlight(view, current=0, when_selection_is_empty=False):
     draw_outlined = sublime.DRAW_OUTLINED if settings.get('word_highlights_draw_outlined') else 0
     word_separators = settings.get('word_separators')
 
-    if len(view.sel()) > 1:
-        regions = list(view.sel())
+    view_sel = view.sel()
+    if len(view_sel) > 1:
+        regions = list(view_sel)
     else:
         regions = []
-        for sel in view.sel():
+        for sel in view_sel:
             #If we directly compare sel and view.word(sel), then in compares their
             #a and b values rather than their begin() and end() values. This means
             #that a leftward selection (with a > b) will never match the view.word()
@@ -67,9 +68,10 @@ def highlight(view, current=0, when_selection_is_empty=False):
                 string = view.substr(sel).strip()
                 if len(string):
                     if len(sel) == len(view.word(sel)):
-                        regions += view.find_all('\\b' + regex_escape(string) + '\\b')
+                        regex = '\\b' + regex_escape(string) + '\\b'
                     else:
-                        regions += view.find_all(regex_escape(string))
+                        regex = regex_escape(string)
+                    regions += view.find_all(regex)
     view.add_regions('WordHighlights%s' % current, regions, color_scope_name[current % len(color_scope_name)], '', draw_outlined | sublime.PERSISTENT)
 
 
