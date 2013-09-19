@@ -32,6 +32,12 @@ def reload_settings(view):
         view.settings().set('word_highlights', True)
 
 
+def word_highlights_enabled(view, default=None):
+    if view.settings().get('word_highlights') is None:
+        reload_settings(view)
+    return view.settings().get('word_highlights', default)
+
+
 def regex_escape(string):
     outstring = ""
     for c in string:
@@ -85,17 +91,8 @@ def reset(view):
 class WordHighlightsListener(sublime_plugin.EventListener):
     def on_selection_modified(self, view):
         settings = view.settings()
-        if settings.get('word_highlights', True):
+        if word_highlights_enabled(view, True):
             highlight(view, 0, settings.get('word_highlights_when_selection_is_empty', False))
-
-    def on_new(self, view):
-        reload_settings(view)
-
-    def on_clone(self, view):
-        reload_settings(view)
-
-    def on_load(self, view):
-        reload_settings(view)
 
 
 class WordHighlightsToggleCommand(sublime_plugin.TextCommand):
@@ -104,7 +101,7 @@ class WordHighlightsToggleCommand(sublime_plugin.TextCommand):
 
     def run(self, edit, block=False):
         settings = self.view.settings()
-        _word_highlights = settings.get('word_highlights', True)
+        _word_highlights = word_highlights_enabled(self.view, True)
         _word_highlights_when_selection_is_empty = settings.get('word_highlights_when_selection_is_empty', True)
         if self.__class__._word_highlights is None:
             self.__class__._word_highlights = _word_highlights
