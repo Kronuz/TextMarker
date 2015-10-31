@@ -60,11 +60,11 @@ def highlight(view, color_scope_name=DEFAULT_COLOR_SCOPE_NAME, when_selection_is
     else:
         regions = []
         for sel in view_sel:
-            #If we directly compare sel and view.word(sel), then in compares their
-            #a and b values rather than their begin() and end() values. This means
-            #that a leftward selection (with a > b) will never match the view.word()
-            #of itself.
-            #As a workaround, we compare the lengths instead.
+            # If we directly compare sel and view.word(sel), then in compares their
+            # a and b values rather than their begin() and end() values. This means
+            # that a leftward selection (with a > b) will never match the view.word()
+            # of itself.
+            # As a workaround, we compare the lengths instead.
             if len(sel) == 0:
                 if when_selection_is_empty:
                     string = view.substr(view.word(sel)).strip()
