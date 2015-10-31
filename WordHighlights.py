@@ -65,14 +65,14 @@ def highlight(view, color_scope_name=DEFAULT_COLOR_SCOPE_NAME, when_selection_is
             # that a leftward selection (with a > b) will never match the view.word()
             # of itself.
             # As a workaround, we compare the lengths instead.
-            if len(sel) == 0:
+            if not sel:
                 if when_selection_is_empty:
                     string = view.substr(view.word(sel)).strip()
-                    if len(string) and all([not c in word_separators for c in string]):
+                    if string and any(c not in word_separators for c in string):
                         regions += view.find_all('\\b' + regex_escape(string) + '\\b')
             else:
                 string = view.substr(sel).strip()
-                if len(string):
+                if string:
                     if len(sel) == len(view.word(sel)):
                         regex = '\\b' + regex_escape(string) + '\\b'
                     else:
