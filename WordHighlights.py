@@ -1,14 +1,15 @@
 import sublime
 import sublime_plugin
 
-DEFAULT_COLOR_SCOPE_NAME = ['comment']
+DEFAULT_COLOR_SCOPE_NAME = 'comment'
 
 ALL_SETTINGS = [
     'word_highlights',
-    'word_highlights_color_scope_name',
     'word_highlights_draw_outlined',
     'word_highlights_when_selection_is_empty',
 ]
+
+used_color_scope_names = []
 
 
 def settings_changed():
@@ -48,9 +49,8 @@ def regex_escape(string):
     return outstring
 
 
-def highlight(view, current=0, when_selection_is_empty=False):
+def highlight(view, color_scope_name=DEFAULT_COLOR_SCOPE_NAME, when_selection_is_empty=False):
     settings = view.settings()
-    color_scope_name = settings.get('word_highlights_color_scope_name', DEFAULT_COLOR_SCOPE_NAME)
     draw_outlined = sublime.DRAW_OUTLINED if settings.get('word_highlights_draw_outlined') else 0
     word_separators = settings.get('word_separators')
 
@@ -78,21 +78,21 @@ def highlight(view, current=0, when_selection_is_empty=False):
                     else:
                         regex = regex_escape(string)
                     regions += view.find_all(regex)
-    view.add_regions('WordHighlights%s' % current, regions, color_scope_name[current % len(color_scope_name)], '', draw_outlined | sublime.PERSISTENT)
+    if color_scope_name not in used_color_scope_names:
+        used_color_scope_names.append(color_scope_name)
+    view.add_regions('WordHighlights_%s' % color_scope_name, regions, color_scope_name, '', draw_outlined | sublime.PERSISTENT)
 
 
 def reset(view):
-    settings = view.settings()
-    color_scope_name = settings.get('word_highlights_color_scope_name', DEFAULT_COLOR_SCOPE_NAME)
-    for current in range(len(color_scope_name)):
-        view.erase_regions('WordHighlights%s' % current)
+    while used_color_scope_names:
+        view.erase_regions('WordHighlights_%s' % used_color_scope_names.pop())
 
 
 class WordHighlightsListener(sublime_plugin.EventListener):
     def on_selection_modified(self, view):
         settings = view.settings()
         if word_highlights_enabled(view, True):
-            highlight(view, 0, settings.get('word_highlights_when_selection_is_empty', False))
+            highlight(view, DEFAULT_COLOR_SCOPE_NAME, settings.get('word_highlights_when_selection_is_empty', False))
 
 
 class WordHighlightsToggleCommand(sublime_plugin.TextCommand):
@@ -114,7 +114,7 @@ class WordHighlightsToggleCommand(sublime_plugin.TextCommand):
         else:
             settings.set('word_highlights', True)
             settings.set('word_highlights_when_selection_is_empty', True)
-            highlight(self.view, 0, True)
+            highlight(self.view, DEFAULT_COLOR_SCOPE_NAME, True)
 
 
 class WordHighlightsResetCommand(sublime_plugin.TextCommand):
@@ -123,5 +123,5 @@ class WordHighlightsResetCommand(sublime_plugin.TextCommand):
 
 
 class WordHighlightsCommand(sublime_plugin.TextCommand):
-    def run(self, edit, block=False, current=0):
-        highlight(self.view, current, True)
+    def run(self, edit, block=False, color_scope_name=DEFAULT_COLOR_SCOPE_NAME):
+        highlight(self.view, color_scope_name, True)

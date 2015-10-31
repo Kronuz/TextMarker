@@ -14,16 +14,6 @@
 		preferences file, then add the below to your color scheme file and change
 		FFE792, 84FF80, 4CB4FF and FD7C82 to whatever color you want:
 
-		---ADD TEXT BELOW THIS LINE TO YOUR USER PREFERENCES FILE---
-			"word_highlights_color_scope_name": [
-				"comment",
-				"wordhighlights1",
-				"wordhighlights2",
-				"wordhighlights3",
-				"wordhighlights4"
-			],
-		---ADD TEXT ABOVE THIS LINE TO YOUR USER PREFERENCES FILE---
-
 		---ADD TEXT BELOW THIS LINE TO YOUR COLOR SCHEME FILE---
 				<dict>
 					<key>name</key>
@@ -87,9 +77,6 @@
 				</dict>
 		---ADD TEXT ABOVE THIS LINE TO YOUR COLOR SCHEME FILE---
 	*/
-	"word_highlights_color_scope_name": [
-		"comment"
-	],
 
 	/* DRAW OUTLINED
 		Use this in your user prefs to make the highlights be drawn as outlines

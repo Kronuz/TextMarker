@@ -2,22 +2,22 @@
     {
         "caption": "WordHighlight: Highlight Selection [1]",
         "command": "word_highlights",
-        "args": {"current": 1}
+        "args": {"color_scope_name": "wordhighlights1"}
     },
     {
         "caption": "WordHighlight: Highlight Selection [2]",
         "command": "word_highlights",
-        "args": {"current": 2}
+        "args": {"color_scope_name": "wordhighlights2"}
     },
     {
         "caption": "WordHighlight: Highlight Selection [3]",
         "command": "word_highlights",
-        "args": {"current": 3}
+        "args": {"color_scope_name": "wordhighlights3"}
     },
     {
         "caption": "WordHighlight: Highlight Selection [4]",
         "command": "word_highlights",
-        "args": {"current": 4}
+        "args": {"color_scope_name": "wordhighlights4"}
     },
     {
         "caption": "WordHighlight: Reset",
