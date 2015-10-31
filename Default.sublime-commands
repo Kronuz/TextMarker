@@ -1,23 +1,58 @@
 [
     {
-        "caption": "WordHighlight: Highlight Selection [1]",
+        "caption": "WordHighlight: Highlight Selection (seagreen)",
         "command": "word_highlights",
-        "args": {"color_scope_name": "wordhighlights1"}
+        "args": {"color": "seagreen"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection [2]",
+        "caption": "WordHighlight: Highlight Selection (springgreen)",
         "command": "word_highlights",
-        "args": {"color_scope_name": "wordhighlights2"}
+        "args": {"color": "springgreen"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection [3]",
+        "caption": "WordHighlight: Highlight Selection (palegoldenrod)",
         "command": "word_highlights",
-        "args": {"color_scope_name": "wordhighlights3"}
+        "args": {"color": "palegoldenrod"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection [4]",
+        "caption": "WordHighlight: Highlight Selection (gold)",
         "command": "word_highlights",
-        "args": {"color_scope_name": "wordhighlights4"}
+        "args": {"color": "gold"}
+    },
+    {
+        "caption": "WordHighlight: Highlight Selection (darkorange)",
+        "command": "word_highlights",
+        "args": {"color": "darkorange"}
+    },
+    {
+        "caption": "WordHighlight: Highlight Selection (orangered)",
+        "command": "word_highlights",
+        "args": {"color": "orangered"}
+    },
+    {
+        "caption": "WordHighlight: Highlight Selection (red)",
+        "command": "word_highlights",
+        "args": {"color": "red"}
+    },
+    {
+        "caption": "WordHighlight: Highlight Selection (deeppink)",
+        "command": "word_highlights",
+        "args": {"color": "deeppink"}
+    },
+    {
+        "caption": "WordHighlight: Highlight Selection (deepskyblue)",
+        "command": "word_highlights",
+        "args": {"color": "deepskyblue"}
+    },
+    {
+        "caption": "WordHighlight: Highlight Selection (aqua)",
+        "command": "word_highlights",
+        "args": {"color": "aqua"}
+    },
+    {
+        "caption": "WordHighlight: Highlight Selection",
+        "command": "word_highlights",
+        "args": {"color": ""}
     },
     {
         "caption": "WordHighlight: Reset",
