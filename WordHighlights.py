@@ -255,29 +255,35 @@ def highlight(view, color=None, when_selection_is_empty=False):
         htmlGen.update(view)
 
     view_sel = view.sel()
-    if len(view_sel) > 1:
+    regions = []
+    for sel in view_sel:
+        # If we directly compare sel and view.word(sel), then in compares their
+        # a and b values rather than their begin() and end() values. This means
+        # that a leftward selection (with a > b) will never match the view.word()
+        # of itself.
+        # As a workaround, we compare the lengths instead.
+        if sel:
+            string = view.substr(sel).strip()
+            if string:
+                if len(sel) == len(view.word(sel)):
+                    regex = '\\b' + regex_escape(string) + '\\b'
+                else:
+                    regex = regex_escape(string)
+                regions.extend(view.find_all(regex))
+        else:
+            if when_selection_is_empty:
+                string = view.substr(view.word(sel)).strip()
+                if string and any(c not in word_separators for c in string):
+                    regions.extend(view.find_all('\\b' + regex_escape(string) + '\\b'))
+
+    if not regions and len(view_sel) > 1:
         regions = list(view_sel)
+
+    if regions:
+        sublime.status_message("%d region%s selected" % (len(regions), "" if len(regions) == 1 else "s"))
     else:
-        regions = []
-        for sel in view_sel:
-            # If we directly compare sel and view.word(sel), then in compares their
-            # a and b values rather than their begin() and end() values. This means
-            # that a leftward selection (with a > b) will never match the view.word()
-            # of itself.
-            # As a workaround, we compare the lengths instead.
-            if not sel:
-                if when_selection_is_empty:
-                    string = view.substr(view.word(sel)).strip()
-                    if string and any(c not in word_separators for c in string):
-                        regions += view.find_all('\\b' + regex_escape(string) + '\\b')
-            else:
-                string = view.substr(sel).strip()
-                if string:
-                    if len(sel) == len(view.word(sel)):
-                        regex = '\\b' + regex_escape(string) + '\\b'
-                    else:
-                        regex = regex_escape(string)
-                    regions += view.find_all(regex)
+        sublime.status_message("")
+
     view.add_regions('wh_' + color_scope_name, regions, color_scope_name, '', draw_outlined | sublime.PERSISTENT)
 
 
