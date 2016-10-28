@@ -243,16 +243,10 @@ def regex_escape(string):
     return outstring
 
 
-def highlight(view, color=None, when_selection_is_empty=False):
+def highlight(view, color=None, when_selection_is_empty=False, add_selections=False):
     settings = view.settings()
     draw_outlined = sublime.DRAW_OUTLINED if settings.get('word_highlights_draw_outlined') else 0
     word_separators = settings.get('word_separators')
-
-    if color is None:
-        color = settings.get('word_highlights_default_color')
-    color_scope_name = htmlGen.add_color(color) or 'comment'
-    if htmlGen.need_update():
-        htmlGen.update(view)
 
     view_sel = view.sel()
     regions = []
@@ -284,8 +278,14 @@ def highlight(view, color=None, when_selection_is_empty=False):
     else:
         sublime.status_message("")
 
-    view.add_regions('wh_' + color_scope_name, regions, color_scope_name, '', draw_outlined | sublime.PERSISTENT)
-    view_sel.add_all(regions)
+    if color is not None:
+        color_scope_name = htmlGen.add_color(color) or 'comment'
+        if htmlGen.need_update():
+            htmlGen.update(view)
+        view.add_regions('wh_' + color_scope_name, regions, color_scope_name, '', draw_outlined | sublime.PERSISTENT)
+
+    if add_selections:
+        view_sel.add_all(regions)
 
 
 def reset(view):
@@ -301,9 +301,9 @@ class WordHighlightsListener(sublime_plugin.EventListener):
     def on_selection_modified(self, view):
         settings = view.settings()
         if word_highlights_enabled(view, True):
-            word_highlights_live_color = settings.get('word_highlights_live_color')
+            word_highlights_live_color = settings.get('word_highlights_live_color', settings.get('word_highlights_default_color')) or ""
             word_highlights_when_selection_is_empty = settings.get('word_highlights_when_selection_is_empty', False)
-            highlight(view, word_highlights_live_color, word_highlights_when_selection_is_empty)
+            highlight(view, color=word_highlights_live_color, when_selection_is_empty=word_highlights_when_selection_is_empty)
 
 
 class WordHighlightsToggleCommand(sublime_plugin.TextCommand):
@@ -325,7 +325,8 @@ class WordHighlightsToggleCommand(sublime_plugin.TextCommand):
         else:
             settings.set('word_highlights', True)
             settings.set('word_highlights_when_selection_is_empty', True)
-            highlight(self.view, None, True)
+            color = settings.get('word_highlights_default_color') or ""
+            highlight(self.view, color=color, when_selection_is_empty=True)
 
 
 class WordHighlightsResetCommand(sublime_plugin.TextCommand):
@@ -335,11 +336,16 @@ class WordHighlightsResetCommand(sublime_plugin.TextCommand):
 
 class WordHighlightsCommand(sublime_plugin.TextCommand):
     def run(self, edit, block=False, color=None):
-        if color == "":
+        if color == "<select>":
+            highlight(self.view, when_selection_is_empty=True, add_selections=True)
+        elif color == "<input>":
             self.view.window().show_input_panel("Color:", "", self.on_done, None, None)
         else:
-            highlight(self.view, color, True)
+            if not color:
+                settings = self.view.settings()
+                color = settings.get('word_highlights_default_color') or ""
+            highlight(self.view, color=color, when_selection_is_empty=True)
 
     def on_done(self, color):
         if color:
-            highlight(self.view, color, True)
+            highlight(self.view, color=color, when_selection_is_empty=True)

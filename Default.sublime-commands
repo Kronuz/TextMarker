@@ -52,7 +52,12 @@
     {
         "caption": "WordHighlight: Highlight Selection",
         "command": "word_highlights",
-        "args": {"color": ""}
+        "args": {"color": "<input>"}
+    },
+    {
+        "caption": "WordHighlight: Select All",
+        "command": "word_highlights",
+        "args": {"color": "<select>"}
     },
     {
         "caption": "WordHighlight: Reset",
