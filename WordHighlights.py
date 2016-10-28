@@ -285,6 +285,7 @@ def highlight(view, color=None, when_selection_is_empty=False):
         sublime.status_message("")
 
     view.add_regions('wh_' + color_scope_name, regions, color_scope_name, '', draw_outlined | sublime.PERSISTENT)
+    view_sel.add_all(regions)
 
 
 def reset(view):
