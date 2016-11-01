@@ -186,14 +186,15 @@ class HtmlGen:
             log("No backup :(")
 
     def set_color_scheme(self, view):
-        cs = view.settings().get('color_scheme')
+        settings = view.settings()
+        cs = settings.get('color_scheme')
         if cs != self.color_scheme:
             color_scheme_path = self.color_scheme_path(view)
             if color_scheme_path:
                 packages_path, cs = color_scheme_path
                 cont = self.get_color_scheme(packages_path, cs)
                 self.colors = dict(("#%s" % c, "%s%s" % (self.prefix, c)) for c in re.findall(r'<string>%s(.*?)</string>' % self.prefix, cont, re.DOTALL))
-            self.color_scheme = view.settings().get('color_scheme')
+            self.color_scheme = settings.get('color_scheme')
             self.need_backup = True
 
     def change_color_scheme(self, view):
@@ -209,28 +210,37 @@ htmlGen = HtmlGen()
 def settings_changed():
     for window in sublime.windows():
         for view in window.views():
-            reload_settings(view)
+            reload_settings(view.settings())
 
 
-def reload_settings(view):
+def reload_settings(settings):
     '''Restores user settings.'''
     settings_name = 'WordHighlights'
-    settings = sublime.load_settings(settings_name + '.sublime-settings')
-    settings.clear_on_change(settings_name)
-    settings.add_on_change(settings_name, settings_changed)
+    global_settings = sublime.load_settings(settings_name + '.sublime-settings')
+    global_settings.clear_on_change(settings_name)
+    global_settings.add_on_change(settings_name, settings_changed)
 
     for setting in ALL_SETTINGS:
-        if settings.get(setting) is not None:
-            view.settings().set(setting, settings.get(setting))
+        if global_settings.get(setting) is not None:
+            settings.set(setting, global_settings.get(setting))
 
-    if view.settings().get('word_highlights') is None:
-        view.settings().set('word_highlights', True)
+    if not settings.has('word_highlights'):
+        settings.set('word_highlights', True)
+
+    if not settings.has('word_highlights_default_color'):
+        settings.set('word_highlights_default_color', "")
+
+    if not settings.has('word_highlights_live_color'):
+        settings.set('word_highlights_live_color', settings.get('word_highlights_default_color'))
+
+    if not settings.has('word_highlights_when_selection_is_empty'):
+        settings.set('word_highlights_when_selection_is_empty', False)
 
 
-def word_highlights_enabled(view, default=None):
-    if view.settings().get('word_highlights') is None:
-        reload_settings(view)
-    return view.settings().get('word_highlights', default)
+def get_setting(settings, name):
+    if not settings.has(name):
+        reload_settings(settings)
+    return settings.get(name)
 
 
 def regex_escape(string):
@@ -300,10 +310,10 @@ class WordHighlightsListener(sublime_plugin.EventListener):
 
     def on_selection_modified(self, view):
         settings = view.settings()
-        if word_highlights_enabled(view, True):
-            word_highlights_live_color = settings.get('word_highlights_live_color', settings.get('word_highlights_default_color')) or ""
-            word_highlights_when_selection_is_empty = settings.get('word_highlights_when_selection_is_empty', False)
-            highlight(view, color=word_highlights_live_color, when_selection_is_empty=word_highlights_when_selection_is_empty)
+        if get_setting(settings, 'word_highlights'):
+            color = get_setting(settings, 'word_highlights_live_color')
+            when_selection_is_empty = get_setting(settings, 'word_highlights_when_selection_is_empty')
+            highlight(view, color=color, when_selection_is_empty=when_selection_is_empty)
 
 
 class WordHighlightsToggleCommand(sublime_plugin.TextCommand):
@@ -312,8 +322,8 @@ class WordHighlightsToggleCommand(sublime_plugin.TextCommand):
 
     def run(self, edit, block=False):
         settings = self.view.settings()
-        _word_highlights = word_highlights_enabled(self.view, True)
-        _word_highlights_when_selection_is_empty = settings.get('word_highlights_when_selection_is_empty', True)
+        _word_highlights = get_setting(settings, 'word_highlights')
+        _word_highlights_when_selection_is_empty = get_setting(settings, 'word_highlights_when_selection_is_empty')
         if self.__class__._word_highlights is None:
             self.__class__._word_highlights = _word_highlights
         if self.__class__._word_highlights_when_selection_is_empty is None:
@@ -325,7 +335,7 @@ class WordHighlightsToggleCommand(sublime_plugin.TextCommand):
         else:
             settings.set('word_highlights', True)
             settings.set('word_highlights_when_selection_is_empty', True)
-            color = settings.get('word_highlights_default_color') or ""
+            color = get_setting(settings, 'word_highlights_default_color')
             highlight(self.view, color=color, when_selection_is_empty=True)
 
 
@@ -343,7 +353,7 @@ class WordHighlightsCommand(sublime_plugin.TextCommand):
         else:
             if not color:
                 settings = self.view.settings()
-                color = settings.get('word_highlights_default_color') or ""
+                color = get_setting(settings, 'word_highlights_default_color')
             highlight(self.view, color=color, when_selection_is_empty=True)
 
     def on_done(self, color):
