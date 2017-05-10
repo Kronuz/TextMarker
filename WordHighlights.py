@@ -259,7 +259,7 @@ def regex_escape(string):
 
 def highlight(view, color=None, when_selection_is_empty=False, add_selections=False):
     settings = view.settings()
-    draw_outlined = sublime.DRAW_OUTLINED if settings.get('word_highlights_draw_outlined') else 0
+    draw_outlined = sublime.DRAW_OUTLINED if get_setting(settings, 'word_highlights_draw_outlined') else 0
     word_separators = settings.get('word_separators')
 
     view_sel = view.sel()
