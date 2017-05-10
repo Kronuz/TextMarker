@@ -7,6 +7,8 @@ import sublime_plugin
 from .colors import names_to_hex, xterm_to_hex
 all_names_to_hex = dict(names_to_hex, **xterm_to_hex)
 
+version = "1.1"
+
 
 ALL_SETTINGS = [
     'word_highlights',
@@ -163,6 +165,7 @@ class HtmlGen:
 
             self.write_file(packages_path, cs, cont)
             self.need_restore = True
+            log("Updated")
 
     def restore_color_scheme(self):
         if not self.need_restore:
