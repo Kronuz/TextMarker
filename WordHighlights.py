@@ -225,7 +225,7 @@ def reload_settings(settings):
     global_settings.add_on_change(settings_name, settings_changed)
 
     for setting in ALL_SETTINGS:
-        if global_settings.get(setting) is not None:
+        if global_settings.has(setting):
             settings.set(setting, global_settings.get(setting))
 
     if not settings.has('word_highlights'):
