@@ -292,11 +292,10 @@ def highlight(view, color=None, when_selection_is_empty=False, add_selections=Fa
     else:
         sublime.status_message("")
 
-    if color is not None:
-        color_scope_name = htmlGen.add_color(color) or 'comment'
-        if htmlGen.need_update():
-            htmlGen.update(view)
-        view.add_regions('wh_' + color_scope_name, regions, color_scope_name, '', draw_outlined | sublime.PERSISTENT)
+    color_scope_name = htmlGen.add_color(color) or 'comment'
+    if htmlGen.need_update():
+        htmlGen.update(view)
+    view.add_regions('wh_' + color_scope_name, regions, color_scope_name, '', draw_outlined | sublime.PERSISTENT)
 
     if add_selections:
         view_sel.add_all(regions)
