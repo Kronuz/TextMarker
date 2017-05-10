@@ -307,6 +307,12 @@ def reset(view):
         view.erase_regions('wh_' + color_scope_name)
 
 
+# command to restore color scheme
+class RestoreColorSchemeCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        htmlGen.restore_color_scheme()
+
+
 class WordHighlightsListener(sublime_plugin.EventListener):
     def on_new(self, view):
         htmlGen.set_color_scheme(view)

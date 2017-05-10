@@ -66,5 +66,9 @@
     {
         "caption": "WordHighlight: Toggle Live Highlight",
         "command": "word_highlights_toggle"
+    },
+    {
+        "caption": "WordHighlight: Restore Color Scheme",
+        "command": "restore_color_scheme",
     }
 ]
