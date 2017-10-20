@@ -7,7 +7,7 @@ import sublime_plugin
 from .colors import names_to_hex, xterm_to_hex
 all_names_to_hex = dict(names_to_hex, **xterm_to_hex)
 
-version = "1.1"
+version = "1.2"
 
 
 ALL_SETTINGS = [
