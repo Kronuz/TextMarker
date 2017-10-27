@@ -1,129 +1,156 @@
 [
     {
-        "caption": "WordHighlight: Highlight Selection Color (aqua)",
+        "caption": "Preferences: WordHighlights Settings – Default",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/WordHighlights/WordHighlights.sublime-settings"
+        }
+    },
+    {
+        "caption": "Preferences: WordHighlights Settings – User",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/User/WordHighlights.sublime-settings"
+        }
+    },
+
+    {
+        "caption": "WordHighlights: Highlight Selection Color (aqua)",
         "command": "word_highlights",
         "args": {"color": "aqua"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (cyan)",
+        "caption": "WordHighlights: Highlight Selection Color (cyan)",
         "command": "word_highlights",
         "args": {"color": "#5cc5e5"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (deepskyblue)",
+        "caption": "WordHighlights: Highlight Selection Color (deepskyblue)",
         "command": "word_highlights",
         "args": {"color": "deepskyblue"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (blue)",
+        "caption": "WordHighlights: Highlight Selection Color (blue)",
         "command": "word_highlights",
         "args": {"color": "#007bff"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (indigo)",
+        "caption": "WordHighlights: Highlight Selection Color (indigo)",
         "command": "word_highlights",
         "args": {"color": "#6610f2"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (purple)",
+        "caption": "WordHighlights: Highlight Selection Color (purple)",
         "command": "word_highlights",
         "args": {"color": "#6f42c1"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (deeppink)",
+        "caption": "WordHighlights: Highlight Selection Color (deeppink)",
         "command": "word_highlights",
         "args": {"color": "deeppink"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (pink)",
+        "caption": "WordHighlights: Highlight Selection Color (pink)",
         "command": "word_highlights",
         "args": {"color": "#e83e8c"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (indianred)",
+        "caption": "WordHighlights: Highlight Selection Color (indianred)",
         "command": "word_highlights",
         "args": {"color": "#e6635b"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (red)",
+        "caption": "WordHighlights: Highlight Selection Color (red)",
         "command": "word_highlights",
         "args": {"color": "red"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (coral)",
+        "caption": "WordHighlights: Highlight Selection Color (coral)",
         "command": "word_highlights",
         "args": {"color": "coral"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (orangered)",
+        "caption": "WordHighlights: Highlight Selection Color (orangered)",
         "command": "word_highlights",
         "args": {"color": "orangered"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (darkorange)",
+        "caption": "WordHighlights: Highlight Selection Color (darkorange)",
         "command": "word_highlights",
         "args": {"color": "darkorange"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (orange)",
+        "caption": "WordHighlights: Highlight Selection Color (orange)",
         "command": "word_highlights",
         "args": {"color": "#fd7e14"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (yellow)",
+        "caption": "WordHighlights: Highlight Selection Color (yellow)",
         "command": "word_highlights",
         "args": {"color": "#f2ba49"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (gold)",
+        "caption": "WordHighlights: Highlight Selection Color (gold)",
         "command": "word_highlights",
         "args": {"color": "gold"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (palegoldenrod)",
+        "caption": "WordHighlights: Highlight Selection Color (palegoldenrod)",
         "command": "word_highlights",
         "args": {"color": "palegoldenrod"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (green)",
+        "caption": "WordHighlights: Highlight Selection Color (green)",
         "command": "word_highlights",
         "args": {"color": "#80c455"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (springgreen)",
+        "caption": "WordHighlights: Highlight Selection Color (springgreen)",
         "command": "word_highlights",
         "args": {"color": "springgreen"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (seagreen)",
+        "caption": "WordHighlights: Highlight Selection Color (seagreen)",
         "command": "word_highlights",
         "args": {"color": "seagreen"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Color (teal)",
+        "caption": "WordHighlights: Highlight Selection Color (teal)",
         "command": "word_highlights",
         "args": {"color": "#20c997"}
     },
     {
-        "caption": "WordHighlight: Highlight Selection Custom Color",
+        "caption": "WordHighlights: Highlight Selection Custom Color",
         "command": "word_highlights",
         "args": {"color": "<input>"}
     },
     {
-        "caption": "WordHighlight: Select All",
+        "caption": "WordHighlights: Select All",
         "command": "word_highlights",
         "args": {"color": "<select>"}
     },
     {
-        "caption": "WordHighlight: Reset",
+        "caption": "WordHighlights: Reset",
         "command": "word_highlights_reset"
     },
     {
-        "caption": "WordHighlight: Toggle Live Highlight",
-        "command": "word_highlights_toggle"
+        "caption": "WordHighlights: Enable Live Highlight",
+        "command": "word_highlights_toggle_setting", "args":
+        {
+            "setting": "live",
+            "value": true
+        }
     },
     {
-        "caption": "WordHighlight: Restore Color Scheme",
+        "caption": "WordHighlights: Disable Live Highlight",
+        "command": "word_highlights_toggle_setting", "args":
+        {
+            "setting": "live",
+            "value": false
+        }
+    },
+    {
+        "caption": "WordHighlights: Restore Color Scheme",
         "command": "restore_color_scheme",
     }
 ]

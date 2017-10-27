@@ -2,30 +2,32 @@
 	WordHighlights default settings
 */
 {
-	/* AUTO WORD HIGHLIGHT
-		Use this in your user prefs to avoid automatically highlighting words
-		as you move the cursor.
-	*/
-	"word_highlights": true,
+    "default": {
+		/* AUTO WORD HIGHLIGHT
+			Use this in your user prefs to avoid automatically highlighting words
+			as you move the cursor.
+		*/
+		"live": true,
 
-	/* COLOR OPTIONS
-		Normally the color of the highlights is the same as the color of comments
-		in your code. If you'd like to customize the highlight color in the menu,
-		edit Default.sublime-commands and add your preferred colors there.
-	*/
-	"word_highlights_default_color": null,
+		/* COLOR OPTIONS
+			Normally the color of the highlights is the same as the color of comments
+			in your code. If you'd like to customize the highlight color in the menu,
+			edit Default.sublime-commands and add your preferred colors there.
+		*/
+		"default_color": null,
 
-	"word_highlights_live_color": null,
+		"live_color": null,
 
-	/* DRAW OUTLINED
-		Use this in your user prefs to make the highlights be drawn as outlines
-		instead of as filled highlights.
-	*/
-	"word_highlights_draw_outlined": false,
+		/* DRAW OUTLINED
+			Use this in your user prefs to make the highlights be drawn as outlines
+			instead of as filled highlights.
+		*/
+		"draw_outlined": false,
 
-	/* HIGHLIGHT WORDS WHEN SELECTION IS EMPTY
-		Use this in your user prefs to make words highlight when the insertion point
-		is inside of them but they're not actually selected.
-	*/
-	"word_highlights_when_selection_is_empty": true
+		/* HIGHLIGHT WORDS WHEN SELECTION IS EMPTY
+			Use this in your user prefs to make words highlight when the insertion point
+			is inside of them but they're not actually selected.
+		*/
+		"when_selection_is_empty": true
+	}
 }
