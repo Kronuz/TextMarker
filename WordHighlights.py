@@ -95,10 +95,9 @@ def highlight(view, color=None, when_selection_is_empty=False, add_selections=Fa
         view_sel.add_all(regions)
 
 
-def reset(view, prefix='wh_'):
+def clear(view, prefix='wh_'):
     for color_scope_name in chain(colorizer.colors.values(), ['comment']):
         view.erase_regions(prefix + color_scope_name)
-    colorizer.colors.clear()
 
 
 # command to restore color scheme
@@ -121,13 +120,19 @@ class WordHighlightsListener(sublime_plugin.EventListener):
             when_selection_is_empty = settings.get('when_selection_is_empty')
             highlight(view, color=color, when_selection_is_empty=when_selection_is_empty, prefix='whl_')
         elif self.live:
-            reset(view, prefix='whl_')
+            clear(view, prefix='whl_')
             self.live = False
+
+
+class WordHighlightsClearCommand(sublime_plugin.TextCommand):
+    def run(self, edit, block=False):
+        clear(self.view)
 
 
 class WordHighlightsResetCommand(sublime_plugin.TextCommand):
     def run(self, edit, block=False):
-        reset(self.view)
+        clear(self.view)
+        colorizer.colors.clear()
 
 
 class WordHighlightsCommand(sublime_plugin.TextCommand):
