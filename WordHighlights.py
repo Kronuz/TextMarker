@@ -98,6 +98,7 @@ def highlight(view, color=None, when_selection_is_empty=False, add_selections=Fa
 def reset(view, prefix='wh_'):
     for color_scope_name in chain(colorizer.colors.values(), ['comment']):
         view.erase_regions(prefix + color_scope_name)
+    colorizer.colors.clear()
 
 
 # command to restore color scheme
