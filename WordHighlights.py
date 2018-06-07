@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 import sublime
 import sublime_plugin
+from itertools import chain
 
 from .settings import Settings, SettingTogglerCommandMixin
 from .colorizer import SchemaColorizer
@@ -11,6 +12,7 @@ VERSION = "2.0"
 
 colorizer = SchemaColorizer()
 
+DEFAULT_COLORS = ['comment']
 
 def regex_escape(string):
     outstring = ""
@@ -22,29 +24,45 @@ def regex_escape(string):
     return outstring
 
 
-def highlight(view, color=None, when_selection_is_empty=False, add_selections=False):
+def highlight(view, color=None, when_selection_is_empty=False, add_selections=False, prefix='wh_'):
     view_settings = view.settings()
     word_separators = view_settings.get('word_separators')
 
-    draw_outlined = sublime.DRAW_OUTLINED if settings.get('draw_outlined') else 0
+    all_regions = {}
+    for color_scope_name in chain(colorizer.colors.values(), ['comment']):
+        regions = view.get_regions(prefix + color_scope_name)
+        if regions:
+            all_regions[color_scope_name] = regions
 
+    def find_color(sel):
+        for color_scope_name, regions in all_regions.items():
+            for region in regions:
+                if region.contains(sel):
+                    return color_scope_name
+
+    colors = set()
     view_sel = view.sel()
     regions = []
     for sel in view_sel:
-        # If we directly compare sel and view.word(sel), then in compares their
-        # a and b values rather than their begin() and end() values. This means
-        # that a leftward selection (with a > b) will never match the view.word()
-        # of itself.
-        # As a workaround, we compare the lengths instead.
+        # Figure out what colors are currently active in the selection
+        color_scope_name = find_color(sel)
+        if color_scope_name:
+            colors.add(color_scope_name)
         if sel:
+            # If the selection is a range...
             string = view.substr(sel).strip()
             if string:
+                # If we directly compare sel and view.word(sel), then in compares their
+                # a and b values rather than their begin() and end() values. This means
+                # that a leftward selection (with a > b) will never match the view.word()
+                # of itself. As a workaround, we compare the lengths instead.
                 if len(sel) == len(view.word(sel)):
                     regex = '\\b' + regex_escape(string) + '\\b'
                 else:
                     regex = regex_escape(string)
                 regions.extend(view.find_all(regex))
         else:
+            # If selection is a point...
             if when_selection_is_empty:
                 string = view.substr(view.word(sel)).strip()
                 if string and any(c not in word_separators for c in string):
@@ -58,18 +76,28 @@ def highlight(view, color=None, when_selection_is_empty=False, add_selections=Fa
     else:
         sublime.status_message("")
 
-    color_scope_name = colorizer.add_color(color) or 'comment'
-    if colorizer.need_update():
-        colorizer.update(view)
-    view.add_regions('wh_' + color_scope_name, regions, color_scope_name, '', draw_outlined | sublime.PERSISTENT)
+    if prefix == 'wh_' and colors:
+        for color_scope_name in colors:
+            view.erase_regions(prefix + color_scope_name)
+    else:
+        if not color:
+            for c in settings.get('default_colors') or DEFAULT_COLORS:
+                csn = colorizer.add_color(c)
+                if csn and csn not in all_regions:
+                    color = c
+                    break
+        color_scope_name = colorizer.add_color(color) or 'comment'
+        if colorizer.need_update():
+            colorizer.update(view)
+        view.add_regions(prefix + color_scope_name, regions, color_scope_name, '', (sublime.DRAW_OUTLINED if settings.get('draw_outlined') else 0) | sublime.PERSISTENT)
 
     if add_selections:
         view_sel.add_all(regions)
 
 
-def reset(view):
-    for color_scope_name in colorizer.colors.values():
-        view.erase_regions('wh_' + color_scope_name)
+def reset(view, prefix='wh_'):
+    for color_scope_name in chain(colorizer.colors.values(), ['comment']):
+        view.erase_regions(prefix + color_scope_name)
 
 
 # command to restore color scheme
@@ -79,15 +107,21 @@ class RestoreColorSchemeCommand(sublime_plugin.TextCommand):
 
 
 class WordHighlightsListener(sublime_plugin.EventListener):
+    live = False
+
     def on_new(self, view):
         colorizer.set_color_scheme(view)
         view.settings().add_on_change('color_scheme', lambda self=self, view=view: colorizer.change_color_scheme(view))
 
     def on_selection_modified(self, view):
         if settings.get('live'):
-            color = settings.get('live_color')
+            self.live = True
+            color = settings.get('live_color') or 'comment'
             when_selection_is_empty = settings.get('when_selection_is_empty')
-            highlight(view, color=color, when_selection_is_empty=when_selection_is_empty)
+            highlight(view, color=color, when_selection_is_empty=when_selection_is_empty, prefix='whl_')
+        elif self.live:
+            reset(view, prefix='whl_')
+            self.live = False
 
 
 class WordHighlightsResetCommand(sublime_plugin.TextCommand):
@@ -102,8 +136,6 @@ class WordHighlightsCommand(sublime_plugin.TextCommand):
         elif color == "<input>":
             self.view.window().show_input_panel("Color:", "", self.on_done, None, None)
         else:
-            if not color:
-                color = settings.get('default_color')
             highlight(self.view, color=color, when_selection_is_empty=True)
 
     def on_done(self, color):

@@ -2,7 +2,7 @@
 	WordHighlights default settings
 */
 {
-    "default": {
+	"default": {
 		/* AUTO WORD HIGHLIGHT
 			Use this in your user prefs to avoid automatically highlighting words
 			as you move the cursor.
@@ -10,11 +10,29 @@
 		"live": true,
 
 		/* COLOR OPTIONS
-			Normally the color of the highlights is the same as the color of comments
-			in your code. If you'd like to customize the highlight color in the menu,
-			edit Default.sublime-commands and add your preferred colors there.
+			Normally the color of the highlights is the same as the color of
+			comments in your code, if this is set, it will rotate among the
+			colors in the list.
+
+			If you'd like to customize the highlight color in the menu, edit
+			Default.sublime-commands and add your preferred colors there.
 		*/
-		"default_color": null,
+		"default_colors": [
+			"darkgoldenrod",
+			"darkmagenta",
+			"darkolivegreen",
+			"darkslateblue",
+			"darkslategray",
+			"darkviolet",
+			"darkblue",
+			"darkturquoise",
+			"darkgray",
+			"darkkhaki",
+			"darkorange",
+			"darksalmon",
+			"darkseagreen",
+			"brown"
+		],
 
 		"live_color": null,
 
