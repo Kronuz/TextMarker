@@ -2,6 +2,8 @@
 
 this plugin highlights words with different colors in Sublime Text.
 
+![Description](screenshots/screenshot.gif?raw=true)
+
 
 ## Installation
 
