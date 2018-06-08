@@ -10,8 +10,6 @@ from .colorizer import SchemaColorizer
 NAME = "TextMarker"
 VERSION = "1.0"
 
-colorizer = SchemaColorizer()
-
 DEFAULT_COLORS = ['comment']
 
 
@@ -90,20 +88,26 @@ def highlight(view, color=None, when_selection_is_empty=False, add_selections=Fa
         color_scope_name = colorizer.add_color(color) or 'comment'
         if colorizer.need_update():
             colorizer.update(view)
-        view.add_regions(prefix + color_scope_name, regions, color_scope_name, '', (sublime.DRAW_OUTLINED if settings.get('draw_outlined') else 0) | sublime.PERSISTENT)
+        view.add_regions(prefix + color_scope_name, regions, color_scope_name, '', (sublime.DRAW_OUTLINED if settings.get('draw_outlined') else 0))
 
     if add_selections:
         view_sel.add_all(regions)
 
 
-def clear(view, prefix='wh_'):
-    for color_scope_name in chain(colorizer.colors.values(), ['comment']):
-        view.erase_regions(prefix + color_scope_name)
+def clear(view=None, prefix='wh_'):
+    if view:
+        for color_scope_name in chain(colorizer.colors.values(), ['comment']):
+            view.erase_regions(prefix + color_scope_name)
+    else:
+        for window in sublime.windows():
+            for view in window.views():
+                clear(view)
 
 
 # command to restore color scheme
 class TextMarkerRestoreCommand(sublime_plugin.TextCommand):
     def run(self, edit):
+        clear()
         colorizer.restore_color_scheme()
 
 
@@ -127,13 +131,13 @@ class TextMarkerListener(sublime_plugin.EventListener):
 
 class TextMarkerClearCommand(sublime_plugin.TextCommand):
     def run(self, edit, block=False):
-        clear(self.view)
+        clear()
 
 
 class TextMarkerResetCommand(sublime_plugin.TextCommand):
     def run(self, edit, block=False):
-        clear(self.view)
-        colorizer.colors.clear()
+        clear()
+        colorizer.clear()
 
 
 class TextMarkerCommand(sublime_plugin.TextCommand):
@@ -161,6 +165,8 @@ if 'settings' not in globals():
 
     class TextMarkerToggleSettingCommand(SettingTogglerCommandMixin, sublime_plugin.WindowCommand):
         settings = settings
+
+    colorizer = SchemaColorizer()
 
 
 ################################################################################
