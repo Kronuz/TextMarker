@@ -13,25 +13,30 @@ this plugin highlights words with different colors in Sublime Text.
 
 ## Usage
 
-- Over the work that you want to mark, press `alt+space`.
+- Step over any word in your document, all words will be highlighted.
+
+- Being over a word or having some selection, press `alt+space` to mark all.
 
 - `alt+escape` clears all marked text.
-
-- You can make a specific selection(s) to mark.
 
 - Each time you mark a word a different color will be used (colors are configurable in the settings)
 
 
 ## Configuration
 
-You can add mouse mappings to be able to mark text by using `ctrl+click`;
-simply add the following mousemaps:
+- Open settings using the command palette:
+  `Preferences: TextMarker Settings - User`
 
+- You can configure live highlight directly from the command palette:
+  `TextMarker: Disable Live Highlight`
+
+- You can add mouse mappings to be able to mark text by using `ctrl+click`;
+  simply add the following mousemaps:
 
 ```json
 [
-	{ "button": "button1", "modifiers": ["ctrl"], "command": "text_marker", "press_command": "drag_select" },
-	{ "button": "button1", "count": 2, "modifiers": ["ctrl"], "command": "text_marker_clear", "press_command": "drag_select" }
+  { "button": "button1", "modifiers": ["ctrl"], "command": "text_marker", "press_command": "drag_select" },
+  { "button": "button1", "count": 2, "modifiers": ["ctrl"], "command": "text_marker_clear", "press_command": "drag_select" }
 ]
 ```
 
