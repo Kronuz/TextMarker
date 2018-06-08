@@ -151,6 +151,6 @@
     },
     {
         "caption": "TextMarker: Restore Color Scheme",
-        "command": "restore_color_scheme",
+        "command": "text_marker_restore",
     }
 ]

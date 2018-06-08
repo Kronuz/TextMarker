@@ -102,7 +102,7 @@ def clear(view, prefix='wh_'):
 
 
 # command to restore color scheme
-class RestoreColorSchemeCommand(sublime_plugin.TextCommand):
+class TextMarkerRestoreCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         colorizer.restore_color_scheme()
 

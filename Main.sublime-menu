@@ -15,7 +15,7 @@
                     },
                     {
                         "caption": "Restore color scheme",
-                        "command": "restore_color_scheme",
+                        "command": "text_marker_restore",
                         "mnemonic": "S"
                     },
                     {
