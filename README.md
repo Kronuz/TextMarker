@@ -2,7 +2,7 @@
 
 This plugin highlights words with different colors in Sublime Text.
 
-Simoply use `alt+space` to mark selected text.
+Simoply use <kbd>Alt</kbd>+<kbd>Space</kbd> to mark selected text.
 
 ![Description](screenshots/screenshot.gif?raw=true)
 
@@ -19,9 +19,9 @@ Simoply use `alt+space` to mark selected text.
 
 - Step over any word in your document, all words will be highlighted.
 
-- Being over a word or having some selection, press `alt+space` to mark all.
+- Being over a word or having some selection, press <kbd>Alt</kbd>+<kbd>Space</kbd> to mark all.
 
-- `alt+escape` clears all marked text.
+- <kbd>Alt</kbd>+<kbd>Escape</kbd> clears all marked text.
 
 - Each time you mark a word a different color will be used (colors are configurable in the settings)
 
@@ -34,7 +34,7 @@ Simoply use `alt+space` to mark selected text.
 - You can configure live highlight directly from the command palette:
   `TextMarker: Disable Live Highlight`
 
-- You can add mouse mappings to be able to mark text by using `ctrl+click`;
+- You can add mouse mappings to be able to mark text by using <kbd>Ctrl</kbd>+<kbd>Click</kbd>;
   simply add the following mousemaps:
 
 ```json
