@@ -7,12 +7,13 @@ from itertools import chain
 from .settings import Settings, SettingTogglerCommandMixin
 from .colorizer import SchemaColorizer
 
-NAME = "WordHighlights"  # SublimeHighlighter
-VERSION = "2.0"
+NAME = "TextMarker"
+VERSION = "1.0"
 
 colorizer = SchemaColorizer()
 
 DEFAULT_COLORS = ['comment']
+
 
 def regex_escape(string):
     outstring = ""
@@ -29,7 +30,7 @@ def highlight(view, color=None, when_selection_is_empty=False, add_selections=Fa
     word_separators = view_settings.get('word_separators')
 
     all_regions = {}
-    for color_scope_name in chain(colorizer.colors.values(), ['comment']):
+    for color_scope_name in chain(colorizer.colors.values(), DEFAULT_COLORS):
         regions = view.get_regions(prefix + color_scope_name)
         if regions:
             all_regions[color_scope_name] = regions
@@ -106,7 +107,7 @@ class RestoreColorSchemeCommand(sublime_plugin.TextCommand):
         colorizer.restore_color_scheme()
 
 
-class WordHighlightsListener(sublime_plugin.EventListener):
+class TextMarkerListener(sublime_plugin.EventListener):
     live = False
 
     def on_new(self, view):
@@ -124,18 +125,18 @@ class WordHighlightsListener(sublime_plugin.EventListener):
             self.live = False
 
 
-class WordHighlightsClearCommand(sublime_plugin.TextCommand):
+class TextMarkerClearCommand(sublime_plugin.TextCommand):
     def run(self, edit, block=False):
         clear(self.view)
 
 
-class WordHighlightsResetCommand(sublime_plugin.TextCommand):
+class TextMarkerResetCommand(sublime_plugin.TextCommand):
     def run(self, edit, block=False):
         clear(self.view)
         colorizer.colors.clear()
 
 
-class WordHighlightsCommand(sublime_plugin.TextCommand):
+class TextMarkerCommand(sublime_plugin.TextCommand):
     def run(self, edit, block=False, color=None):
         if color == "<select>":
             highlight(self.view, when_selection_is_empty=True, add_selections=True)
@@ -151,14 +152,14 @@ class WordHighlightsCommand(sublime_plugin.TextCommand):
 
 ################################################################################
 # Initialize settings and main objects only once
-class WordHighlightsSettings(Settings):
+class TextMarkerSettings(Settings):
     pass
 
 
 if 'settings' not in globals():
-    settings = WordHighlightsSettings(NAME)
+    settings = TextMarkerSettings(NAME)
 
-    class WordHighlightsToggleSettingCommand(SettingTogglerCommandMixin, sublime_plugin.WindowCommand):
+    class TextMarkerToggleSettingCommand(SettingTogglerCommandMixin, sublime_plugin.WindowCommand):
         settings = settings
 
 

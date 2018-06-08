@@ -4,12 +4,12 @@
         "children":
         [
             {
-                "caption": "Word Highlights",
+                "caption": "Text Marker",
                 "children":
                 [
                     {
-                        "caption": "Word Highlights",
-                        "command": "word_highlights",
+                        "caption": "Text Marker",
+                        "command": "text_marker",
                         "mnemonic": "C",
                         "checkbox": true
                     },
@@ -19,8 +19,8 @@
                         "mnemonic": "S"
                     },
                     {
-                        "caption": "Reset Word Highlights",
-                        "command": "word_highlights_reset",
+                        "caption": "Reset Text Marker",
+                        "command": "text_marker_reset",
                         "mnemonic": "R"
                     }
                 ]

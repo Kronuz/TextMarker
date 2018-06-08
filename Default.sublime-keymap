@@ -1,4 +1,4 @@
 [
-	{ "keys": [ "alt+space" ], "command": "word_highlights",  },
-	{ "keys": [ "alt+escape" ], "command": "word_highlights_reset" }
+	{ "keys": [ "alt+space" ], "command": "text_marker",  },
+	{ "keys": [ "alt+escape" ], "command": "text_marker_reset" }
 ]

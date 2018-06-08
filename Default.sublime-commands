@@ -1,156 +1,156 @@
 [
     {
-        "caption": "Preferences: WordHighlights Settings – Default",
+        "caption": "Preferences: TextMarker Settings – Default",
         "command": "open_file", "args":
         {
-            "file": "${packages}/WordHighlights/WordHighlights.sublime-settings"
+            "file": "${packages}/TextMarker/TextMarker.sublime-settings"
         }
     },
     {
-        "caption": "Preferences: WordHighlights Settings – User",
+        "caption": "Preferences: TextMarker Settings – User",
         "command": "open_file", "args":
         {
-            "file": "${packages}/User/WordHighlights.sublime-settings"
+            "file": "${packages}/User/TextMarker.sublime-settings"
         }
     },
 
     {
-        "caption": "WordHighlights: Highlight Selection Color (aqua)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (aqua)",
+        "command": "text_marker",
         "args": {"color": "aqua"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (cyan)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (cyan)",
+        "command": "text_marker",
         "args": {"color": "#5cc5e5"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (deepskyblue)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (deepskyblue)",
+        "command": "text_marker",
         "args": {"color": "deepskyblue"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (blue)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (blue)",
+        "command": "text_marker",
         "args": {"color": "#007bff"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (indigo)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (indigo)",
+        "command": "text_marker",
         "args": {"color": "#6610f2"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (purple)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (purple)",
+        "command": "text_marker",
         "args": {"color": "#6f42c1"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (deeppink)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (deeppink)",
+        "command": "text_marker",
         "args": {"color": "deeppink"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (pink)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (pink)",
+        "command": "text_marker",
         "args": {"color": "#e83e8c"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (indianred)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (indianred)",
+        "command": "text_marker",
         "args": {"color": "#e6635b"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (red)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (red)",
+        "command": "text_marker",
         "args": {"color": "red"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (coral)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (coral)",
+        "command": "text_marker",
         "args": {"color": "coral"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (orangered)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (orangered)",
+        "command": "text_marker",
         "args": {"color": "orangered"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (darkorange)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (darkorange)",
+        "command": "text_marker",
         "args": {"color": "darkorange"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (orange)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (orange)",
+        "command": "text_marker",
         "args": {"color": "#fd7e14"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (yellow)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (yellow)",
+        "command": "text_marker",
         "args": {"color": "#f2ba49"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (gold)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (gold)",
+        "command": "text_marker",
         "args": {"color": "gold"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (palegoldenrod)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (palegoldenrod)",
+        "command": "text_marker",
         "args": {"color": "palegoldenrod"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (green)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (green)",
+        "command": "text_marker",
         "args": {"color": "#80c455"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (springgreen)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (springgreen)",
+        "command": "text_marker",
         "args": {"color": "springgreen"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (seagreen)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (seagreen)",
+        "command": "text_marker",
         "args": {"color": "seagreen"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Color (teal)",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Color (teal)",
+        "command": "text_marker",
         "args": {"color": "#20c997"}
     },
     {
-        "caption": "WordHighlights: Highlight Selection Custom Color",
-        "command": "word_highlights",
+        "caption": "TextMarker: Highlight Selection Custom Color",
+        "command": "text_marker",
         "args": {"color": "<input>"}
     },
     {
-        "caption": "WordHighlights: Select All",
-        "command": "word_highlights",
+        "caption": "TextMarker: Select All",
+        "command": "text_marker",
         "args": {"color": "<select>"}
     },
     {
-        "caption": "WordHighlights: Reset",
-        "command": "word_highlights_reset"
+        "caption": "TextMarker: Reset",
+        "command": "text_marker_reset"
     },
     {
-        "caption": "WordHighlights: Enable Live Highlight",
-        "command": "word_highlights_toggle_setting", "args":
+        "caption": "TextMarker: Enable Live Highlight",
+        "command": "text_marker_toggle_setting", "args":
         {
             "setting": "live",
             "value": true
         }
     },
     {
-        "caption": "WordHighlights: Disable Live Highlight",
-        "command": "word_highlights_toggle_setting", "args":
+        "caption": "TextMarker: Disable Live Highlight",
+        "command": "text_marker_toggle_setting", "args":
         {
             "setting": "live",
             "value": false
         }
     },
     {
-        "caption": "WordHighlights: Restore Color Scheme",
+        "caption": "TextMarker: Restore Color Scheme",
         "command": "restore_color_scheme",
     }
 ]
