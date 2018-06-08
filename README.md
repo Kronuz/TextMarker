@@ -1,6 +1,8 @@
 # 🖍 Text Marker (Highlighter)
 
-this plugin highlights words with different colors in Sublime Text.
+This plugin highlights words with different colors in Sublime Text.
+
+Simoply use `alt+space` to mark selected text.
 
 ![Description](screenshots/screenshot.gif?raw=true)
 
