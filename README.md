@@ -2,7 +2,7 @@
 
 This plugin highlights words with different colors in Sublime Text.
 
-Simoply use <kbd>Alt</kbd>+<kbd>Space</kbd> to mark selected text.
+Simply use <kbd>Alt</kbd>+<kbd>Space</kbd> to mark selected text.
 
 ![Description](screenshots/screenshot.gif?raw=true)
 
@@ -35,7 +35,7 @@ Simoply use <kbd>Alt</kbd>+<kbd>Space</kbd> to mark selected text.
   `TextMarker: Disable Live Highlight`
 
 - You can add mouse mappings to be able to mark text by using <kbd>Ctrl</kbd>+<kbd>Click</kbd>;
-  simply add the following mousemaps:
+  simply add the following Sublime Text "mousemaps":
 
 ```json
 [
