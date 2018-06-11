@@ -160,12 +160,14 @@ class TextMarkerSettings(Settings):
     pass
 
 
-if 'settings' not in globals():
-    settings = TextMarkerSettings(NAME)
+settings = TextMarkerSettings(NAME)
 
-    class TextMarkerToggleSettingCommand(SettingTogglerCommandMixin, sublime_plugin.WindowCommand):
-        settings = settings
 
+class TextMarkerToggleSettingCommand(SettingTogglerCommandMixin, sublime_plugin.WindowCommand):
+    settings = settings
+
+
+if 'colorizer' not in globals():
     colorizer = SchemaColorizer()
 
 
