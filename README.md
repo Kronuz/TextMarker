@@ -39,8 +39,8 @@ Simply use <kbd>Alt</kbd>+<kbd>Space</kbd> to mark selected text.
 
 ```json
 [
-  { "button": "button1", "modifiers": ["ctrl"], "command": "text_marker", "press_command": "drag_select" },
-  { "button": "button1", "count": 2, "modifiers": ["ctrl"], "command": "text_marker_clear", "press_command": "drag_select" }
+  { "button": "button1", "modifiers": ["alt"], "command": "text_marker", "press_command": "drag_select" },
+  { "button": "button1", "count": 2, "modifiers": ["alt"], "command": "text_marker_clear", "press_command": "drag_select" }
 ]
 ```
 
