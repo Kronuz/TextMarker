@@ -79,6 +79,7 @@ def highlight(view, color=None, when_selection_is_empty=False, add_selections=Fa
         for color_scope_name in colors:
             view.erase_regions(prefix + color_scope_name)
     else:
+        colorizer.setup_color_scheme(view_settings)
         if not color:
             for c in settings.get('default_colors') or DEFAULT_COLORS:
                 csn = colorizer.add_color(c)
@@ -86,37 +87,32 @@ def highlight(view, color=None, when_selection_is_empty=False, add_selections=Fa
                     color = c
                     break
         color_scope_name = colorizer.add_color(color) or 'comment'
-        if colorizer.need_update():
-            colorizer.update(view)
+        colorizer.update(view)
         view.add_regions(prefix + color_scope_name, regions, color_scope_name, '', (sublime.DRAW_OUTLINED if settings.get('draw_outlined') else 0))
 
     if add_selections:
         view_sel.add_all(regions)
 
 
-def clear(view=None, prefix='wh_'):
+def erase_colors(view=None, prefix='wh_'):
     if view:
         for color_scope_name in chain(colorizer.colors.values(), ['comment']):
             view.erase_regions(prefix + color_scope_name)
     else:
         for window in sublime.windows():
             for view in window.views():
-                clear(view)
+                erase_colors(view)
 
 
 # command to restore color scheme
 class TextMarkerRestoreCommand(sublime_plugin.TextCommand):
     def run(self, edit):
-        clear()
+        erase_colors()
         colorizer.restore_color_scheme()
 
 
 class TextMarkerListener(sublime_plugin.EventListener):
     live = False
-
-    def on_new(self, view):
-        colorizer.set_color_scheme(view)
-        view.settings().add_on_change('color_scheme', lambda self=self, view=view: colorizer.change_color_scheme(view))
 
     def on_selection_modified(self, view):
         if settings.get('live'):
@@ -125,19 +121,19 @@ class TextMarkerListener(sublime_plugin.EventListener):
             when_selection_is_empty = settings.get('when_selection_is_empty')
             highlight(view, color=color, when_selection_is_empty=when_selection_is_empty, prefix='whl_')
         elif self.live:
-            clear(view, prefix='whl_')
+            erase_colors(view, prefix='whl_')
             self.live = False
 
 
 class TextMarkerClearCommand(sublime_plugin.TextCommand):
     def run(self, edit, block=False):
-        clear()
+        erase_colors()
 
 
 class TextMarkerResetCommand(sublime_plugin.TextCommand):
     def run(self, edit, block=False):
-        clear()
-        colorizer.clear()
+        erase_colors()
+        colorizer.setup_color_scheme(self.view.settings())
 
 
 class TextMarkerCommand(sublime_plugin.TextCommand):
