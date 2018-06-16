@@ -1,19 +1,11 @@
 [
     {
-        "caption": "Preferences: TextMarker Settings – Default",
-        "command": "open_file", "args":
-        {
-            "file": "${packages}/TextMarker/TextMarker.sublime-settings"
-        }
+        "caption": "Preferences: TextMarker Settings",
+        "command": "edit_settings",
+        "args": {
+          "base_file": "${packages}/TextMarker/TextMarker.sublime-settings",
+          "default": "/*\n\tTextMarker user settings in here override the default\n*/\n{\n\t\"user\": {\n\t\t$0\n\t}\n}\n"}
     },
-    {
-        "caption": "Preferences: TextMarker Settings – User",
-        "command": "open_file", "args":
-        {
-            "file": "${packages}/User/TextMarker.sublime-settings"
-        }
-    },
-
     {
         "caption": "TextMarker: Highlight Selection Color (aqua)",
         "command": "text_marker",
