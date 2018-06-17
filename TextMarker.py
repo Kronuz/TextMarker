@@ -14,6 +14,15 @@ VERSION = "1.0.4"
 DEFAULT_COLORS = ['comment']
 
 
+def regex_escape(string):
+    # Sublime Text chokes when regexes contain \', \<, \>, or \`.
+    # Call re.escape() to escape everything, and then unescape these four.
+    string = re.escape(string)
+    for c in "'<>`":
+        string = string.replace('\\' + c, c)
+    return string
+
+
 def highlight(view, color=None, when_selection_is_empty=False, add_selections=False, prefix='wh_'):
     view_settings = view.settings()
     word_separators = view_settings.get('word_separators')
@@ -47,16 +56,16 @@ def highlight(view, color=None, when_selection_is_empty=False, add_selections=Fa
                 # that a leftward selection (with a > b) will never match the view.word()
                 # of itself. As a workaround, we compare the lengths instead.
                 if len(sel) == len(view.word(sel)):
-                    regex = r'\b%s\b' % re.escape(string)
+                    regex = r'\b%s\b' % regex_escape(string)
                 else:
-                    regex = re.escape(string)
+                    regex = regex_escape(string)
                 regions.extend(view.find_all(regex))
         else:
             # If selection is a point...
             if when_selection_is_empty:
                 string = view.substr(view.word(sel)).strip()
                 if string and any(c not in word_separators for c in string):
-                    regions.extend(view.find_all(r'\b%s\b' % re.escape(string)))
+                    regions.extend(view.find_all(r'\b%s\b' % regex_escape(string)))
 
     if not regions and len(view_sel) > 1:
         regions = list(view_sel)
