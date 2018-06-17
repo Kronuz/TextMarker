@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 
+import re
 import sublime
 import sublime_plugin
 from itertools import chain
@@ -11,16 +12,6 @@ NAME = "TextMarker"
 VERSION = "1.0.4"
 
 DEFAULT_COLORS = ['comment']
-
-
-def regex_escape(string):
-    outstring = ""
-    for c in string:
-        if c != '\\':
-            outstring += '[' + c + ']'
-        else:
-            outstring += '\\'
-    return outstring
 
 
 def highlight(view, color=None, when_selection_is_empty=False, add_selections=False, prefix='wh_'):
@@ -56,16 +47,16 @@ def highlight(view, color=None, when_selection_is_empty=False, add_selections=Fa
                 # that a leftward selection (with a > b) will never match the view.word()
                 # of itself. As a workaround, we compare the lengths instead.
                 if len(sel) == len(view.word(sel)):
-                    regex = '\\b' + regex_escape(string) + '\\b'
+                    regex = r'\b%s\b' % re.escape(string)
                 else:
-                    regex = regex_escape(string)
+                    regex = re.escape(string)
                 regions.extend(view.find_all(regex))
         else:
             # If selection is a point...
             if when_selection_is_empty:
                 string = view.substr(view.word(sel)).strip()
                 if string and any(c not in word_separators for c in string):
-                    regions.extend(view.find_all('\\b' + regex_escape(string) + '\\b'))
+                    regions.extend(view.find_all(r'\b%s\b' % re.escape(string)))
 
     if not regions and len(view_sel) > 1:
         regions = list(view_sel)
