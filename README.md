@@ -1,6 +1,11 @@
 # 🖍 Text Marker (Highlighter)
 
-This plugin highlights words with different colors in Sublime Text.
+This Sublime Text plugin allows temporarily and persistently marking all
+occurrences of selected words in a color; multiple marked selections can be
+added simultaneously, each marking the selections with different colors.
+
+Optionally (enabled by default) it also highlights all copies of a word that
+currently has the insertion cursor upon it or which is currently selected.
 
 Simply use <kbd>Alt</kbd>+<kbd>Space</kbd> to mark selected text.
 
@@ -17,7 +22,7 @@ Simply use <kbd>Alt</kbd>+<kbd>Space</kbd> to mark selected text.
 
 ## Usage
 
-- Step over any word in your document, all words will be highlighted.
+- Step over any word in your document, all occurrences of the word will be highlighted.
 
 - Being over a word or having some selection, press <kbd>Alt</kbd>+<kbd>Space</kbd> to mark all.
 
@@ -31,7 +36,7 @@ Simply use <kbd>Alt</kbd>+<kbd>Space</kbd> to mark selected text.
 - Open settings using the command palette:
   `Preferences: TextMarker Settings - User`
 
-- You can configure live highlight directly from the command palette:
+- You can configure live word highlight directly from the command palette:
   `TextMarker: Disable Live Highlight`
 
 - You can add mouse mappings to be able to mark text by using <kbd>Ctrl</kbd>+<kbd>Click</kbd>;
