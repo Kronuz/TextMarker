@@ -95,13 +95,6 @@ def erase_colors(view=None, prefix='wh_'):
                 erase_colors(view)
 
 
-# command to restore color scheme
-class TextMarkerRestoreCommand(sublime_plugin.TextCommand):
-    def run(self, edit):
-        erase_colors()
-        colorizer.restore_color_scheme()
-
-
 class TextMarkerListener(sublime_plugin.EventListener):
     live = False
 
@@ -116,19 +109,26 @@ class TextMarkerListener(sublime_plugin.EventListener):
             self.live = False
 
 
+# command to restore color scheme
+class TextMarkerRestoreCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        erase_colors()
+        colorizer.restore_color_scheme()
+
+
 class TextMarkerClearCommand(sublime_plugin.TextCommand):
-    def run(self, edit, block=False):
+    def run(self, edit):
         erase_colors()
 
 
 class TextMarkerResetCommand(sublime_plugin.TextCommand):
-    def run(self, edit, block=False):
+    def run(self, edit):
         erase_colors()
         colorizer.setup_color_scheme(self.view.settings())
 
 
 class TextMarkerCommand(sublime_plugin.TextCommand):
-    def run(self, edit, block=False, color=None):
+    def run(self, edit, color=None):
         if color == "<select>":
             highlight(self.view, when_selection_is_empty=True, add_selections=True)
         elif color == "<input>":
