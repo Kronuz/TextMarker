@@ -55,3 +55,6 @@ Simply use <kbd>Alt</kbd>+<kbd>Space</kbd> to mark selected text.
 Copyright (C) 2018 German Mendez Bravo (Kronuz). All rights reserved.
 
 MIT license
+
+This plugin was initially a fork of
+https://github.com/SublimeText/WordHighlight/blob/master/word_highlight.py
