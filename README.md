@@ -1,5 +1,8 @@
 # 🖍 Text Marker (Highlighter)
 
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/Kronuz/25)
+[![Package Control](https://img.shields.io/packagecontrol/dt/Text%20Marker.svg)](https://packagecontrol.io/packages/Text%20Marker)
+
 This Sublime Text plugin allows temporarily and persistently marking all
 occurrences of selected words in a color; multiple marked selections can be
 added simultaneously, each marking the selections with different colors.
@@ -48,11 +51,6 @@ Simply use <kbd>Alt</kbd>+<kbd>Space</kbd> to mark selected text.
   { "button": "button1", "count": 2, "modifiers": ["alt"], "command": "text_marker_clear", "press_command": "drag_select" }
 ]
 ```
-
-
-## Donate
-
-[![Click here to lend your support to TextMarker and make a donation!](https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif)](https://www.paypal.me/Kronuz/25)
 
 
 ## License
