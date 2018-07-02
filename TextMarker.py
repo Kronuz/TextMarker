@@ -119,19 +119,19 @@ class TextMarkerListener(sublime_plugin.EventListener):
 
 
 # command to restore color scheme
-class TextMarkerRestoreCommand(sublime_plugin.TextCommand):
-    def run(self, edit):
+class TextMarkerRestoreCommand(sublime_plugin.ApplicationCommand):
+    def run(self):
         erase_colors()
         colorizer.restore_color_scheme()
 
 
-class TextMarkerClearCommand(sublime_plugin.TextCommand):
-    def run(self, edit):
+class TextMarkerClearCommand(sublime_plugin.ApplicationCommand):
+    def run(self):
         erase_colors()
 
 
-class TextMarkerResetCommand(sublime_plugin.TextCommand):
-    def run(self, edit):
+class TextMarkerResetCommand(sublime_plugin.ApplicationCommand):
+    def run(self):
         erase_colors()
         colorizer.setup_color_scheme(self.view.settings())
 
