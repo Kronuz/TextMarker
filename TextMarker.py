@@ -9,7 +9,7 @@ from .settings import Settings, SettingTogglerCommandMixin
 from .colorizer import SchemaColorizer
 
 NAME = "Text Marker"
-VERSION = "1.1.0"
+VERSION = "1.2.0"
 
 DEFAULT_COLORS = ['comment']
 
