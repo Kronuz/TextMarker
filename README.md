@@ -20,7 +20,7 @@ Simply use <kbd>Alt</kbd>+<kbd>Space</kbd> to mark selected text.
 - **_Recommended_** - Using [Sublime Package Control](https://packagecontrol.io "Sublime Package Control")
     - <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> then select `Package Control: Install Package`
     - install `Text Marker`
-- Alternatively, download the package from [GitHub](https://github.com/Kronuz/Text-Marker "Text Marker") into your `Packages` folder.
+- Alternatively, download the package from [GitHub](https://github.com/Kronuz/TextMarker "Text Marker") into your `Packages` folder and make sure to rename the directory to "Text Marker".
 
 
 ## Usage
