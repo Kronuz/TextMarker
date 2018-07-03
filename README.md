@@ -20,7 +20,7 @@ Simply use <kbd>Alt</kbd>+<kbd>Space</kbd> to mark selected text.
 - **_Recommended_** - Using [Sublime Package Control](https://packagecontrol.io "Sublime Package Control")
     - <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> then select `Package Control: Install Package`
     - install `Text Marker`
-- Alternatively, download the package from [GitHub](https://github.com/Kronuz/TextMarker "TextMarker") into your `Packages` folder.
+- Alternatively, download the package from [GitHub](https://github.com/Kronuz/Text-Marker "Text Marker") into your `Packages` folder.
 
 
 ## Usage
@@ -37,10 +37,10 @@ Simply use <kbd>Alt</kbd>+<kbd>Space</kbd> to mark selected text.
 ## Configuration
 
 - Open settings using the command palette:
-  `Preferences: TextMarker Settings - User`
+  `Preferences: Text Marker Settings - User`
 
 - You can configure live word highlight directly from the command palette:
-  `TextMarker: Disable Live Highlight`
+  `Text Marker: Disable Live Highlight`
 
 - You can add mouse mappings to be able to mark text by using <kbd>Ctrl</kbd>+<kbd>Click</kbd>;
   simply add the following Sublime Text "mousemaps":

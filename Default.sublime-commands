@@ -1,132 +1,132 @@
 [
     {
-        "caption": "Preferences: TextMarker Settings",
+        "caption": "Preferences: Text Marker Settings",
         "command": "edit_settings",
         "args": {
-          "base_file": "${packages}/TextMarker/TextMarker.sublime-settings",
-          "default": "/*\n\tTextMarker user settings in here override the default\n*/\n{\n\t\"user\": {\n\t\t$0\n\t}\n}\n"}
+          "base_file": "${packages}/Text Marker/Text Marker.sublime-settings",
+          "default": "/*\n\tText Marker user settings in here override the default\n*/\n{\n\t\"user\": {\n\t\t$0\n\t}\n}\n"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (aqua)",
+        "caption": "Text Marker: Highlight Selection Color (aqua)",
         "command": "text_marker",
         "args": {"color": "aqua"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (cyan)",
+        "caption": "Text Marker: Highlight Selection Color (cyan)",
         "command": "text_marker",
         "args": {"color": "#5cc5e5"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (deepskyblue)",
+        "caption": "Text Marker: Highlight Selection Color (deepskyblue)",
         "command": "text_marker",
         "args": {"color": "deepskyblue"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (blue)",
+        "caption": "Text Marker: Highlight Selection Color (blue)",
         "command": "text_marker",
         "args": {"color": "#007bff"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (indigo)",
+        "caption": "Text Marker: Highlight Selection Color (indigo)",
         "command": "text_marker",
         "args": {"color": "#6610f2"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (purple)",
+        "caption": "Text Marker: Highlight Selection Color (purple)",
         "command": "text_marker",
         "args": {"color": "#6f42c1"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (deeppink)",
+        "caption": "Text Marker: Highlight Selection Color (deeppink)",
         "command": "text_marker",
         "args": {"color": "deeppink"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (pink)",
+        "caption": "Text Marker: Highlight Selection Color (pink)",
         "command": "text_marker",
         "args": {"color": "#e83e8c"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (indianred)",
+        "caption": "Text Marker: Highlight Selection Color (indianred)",
         "command": "text_marker",
         "args": {"color": "#e6635b"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (red)",
+        "caption": "Text Marker: Highlight Selection Color (red)",
         "command": "text_marker",
         "args": {"color": "red"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (coral)",
+        "caption": "Text Marker: Highlight Selection Color (coral)",
         "command": "text_marker",
         "args": {"color": "coral"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (orangered)",
+        "caption": "Text Marker: Highlight Selection Color (orangered)",
         "command": "text_marker",
         "args": {"color": "orangered"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (darkorange)",
+        "caption": "Text Marker: Highlight Selection Color (darkorange)",
         "command": "text_marker",
         "args": {"color": "darkorange"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (orange)",
+        "caption": "Text Marker: Highlight Selection Color (orange)",
         "command": "text_marker",
         "args": {"color": "#fd7e14"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (yellow)",
+        "caption": "Text Marker: Highlight Selection Color (yellow)",
         "command": "text_marker",
         "args": {"color": "#f2ba49"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (gold)",
+        "caption": "Text Marker: Highlight Selection Color (gold)",
         "command": "text_marker",
         "args": {"color": "gold"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (palegoldenrod)",
+        "caption": "Text Marker: Highlight Selection Color (palegoldenrod)",
         "command": "text_marker",
         "args": {"color": "palegoldenrod"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (green)",
+        "caption": "Text Marker: Highlight Selection Color (green)",
         "command": "text_marker",
         "args": {"color": "#80c455"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (springgreen)",
+        "caption": "Text Marker: Highlight Selection Color (springgreen)",
         "command": "text_marker",
         "args": {"color": "springgreen"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (seagreen)",
+        "caption": "Text Marker: Highlight Selection Color (seagreen)",
         "command": "text_marker",
         "args": {"color": "seagreen"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Color (teal)",
+        "caption": "Text Marker: Highlight Selection Color (teal)",
         "command": "text_marker",
         "args": {"color": "#20c997"}
     },
     {
-        "caption": "TextMarker: Highlight Selection Custom Color",
+        "caption": "Text Marker: Highlight Selection Custom Color",
         "command": "text_marker",
         "args": {"color": "<input>"}
     },
     {
-        "caption": "TextMarker: Select All",
+        "caption": "Text Marker: Select All",
         "command": "text_marker",
         "args": {"color": "<select>"}
     },
     {
-        "caption": "TextMarker: Reset",
+        "caption": "Text Marker: Reset",
         "command": "text_marker_reset"
     },
     {
-        "caption": "TextMarker: Enable Live Highlight",
+        "caption": "Text Marker: Enable Live Highlight",
         "command": "text_marker_toggle_setting", "args":
         {
             "setting": "live",
@@ -134,7 +134,7 @@
         }
     },
     {
-        "caption": "TextMarker: Disable Live Highlight",
+        "caption": "Text Marker: Disable Live Highlight",
         "command": "text_marker_toggle_setting", "args":
         {
             "setting": "live",
@@ -142,7 +142,7 @@
         }
     },
     {
-        "caption": "TextMarker: Restore Color Scheme",
+        "caption": "Text Marker: Restore Color Scheme",
         "command": "text_marker_restore",
     }
 ]

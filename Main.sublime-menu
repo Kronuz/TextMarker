@@ -1,34 +1,11 @@
 [
     {
-        "id": "preferences",
-        "caption": "Preferences",
-        "mnemonic": "n",
+        "id": "tools",
         "children": [
             {
-                "id": "package-settings",
-                "caption": "Package Settings",
-                "mnemonic": "P",
-                "children": [
-                    {
-                        "caption": "TextMarker Settings",
-                        "command": "edit_settings",
-                        "args": {
-                            "base_file": "${packages}/TextMarker/TextMarker.sublime-settings",
-                            "default": "/*\n\tTextMarker user settings in here override the default\n*/\n{\n\t\"user\": {\n\t\t$0\n\t}\n}\n"
-                        }
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "id": "tools",
-        "children":
-        [
-            {
+                "id": "text-marker",
                 "caption": "Text Marker",
-                "children":
-                [
+                "children": [
                     {
                         "caption": "Text Marker",
                         "command": "text_marker",
@@ -44,6 +21,28 @@
                         "caption": "Reset Text Marker",
                         "command": "text_marker_reset",
                         "mnemonic": "R"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "preferences",
+        "caption": "Preferences",
+        "mnemonic": "n",
+        "children": [
+            {
+                "id": "package-settings",
+                "caption": "Package Settings",
+                "mnemonic": "P",
+                "children": [
+                    {
+                        "caption": "Text Marker Settings",
+                        "command": "edit_settings",
+                        "args": {
+                            "base_file": "${packages}/Text Marker/Text Marker.sublime-settings",
+                            "default": "/*\n\tText Marker user settings in here override the default\n*/\n{\n\t\"user\": {\n\t\t$0\n\t}\n}\n"
+                        }
                     }
                 ]
             }

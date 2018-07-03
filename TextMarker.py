@@ -8,7 +8,7 @@ from itertools import chain
 from .settings import Settings, SettingTogglerCommandMixin
 from .colorizer import SchemaColorizer
 
-NAME = "TextMarker"
+NAME = "Text Marker"
 VERSION = "1.1.0"
 
 DEFAULT_COLORS = ['comment']
