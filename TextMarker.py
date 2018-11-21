@@ -49,7 +49,7 @@ def highlight(view, color=None, when_selection_is_empty=False, add_selections=Fa
             colors.add(color_scope_name)
         if sel:
             # If the selection is a range...
-            string = view.substr(sel).strip()
+            string = view.substr(sel)
             if string:
                 # If we directly compare sel and view.word(sel), then in compares their
                 # a and b values rather than their begin() and end() values. This means
@@ -63,7 +63,7 @@ def highlight(view, color=None, when_selection_is_empty=False, add_selections=Fa
         else:
             # If selection is a point...
             if when_selection_is_empty:
-                string = view.substr(view.word(sel)).strip()
+                string = view.substr(view.word(sel))
                 if string and any(c not in word_separators for c in string):
                     regions.extend(view.find_all(r'\b%s\b' % regex_escape(string)))
 
