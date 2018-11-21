@@ -214,7 +214,7 @@ class SchemaColorizer(object):
         if rules:
             try:
                 # For sublime-color-scheme
-                m = re.search(r'([\t ]*)"rules":\s*\[[\r\n]+', content)
+                m = re.search(r'([\t ]*)"rules":\s*\[[\r\n]*', content)
                 if m:
                     json_rules = json.dumps({"rules": rules}, indent=m.group(1))
                     json_rules = '\n'.join(map(str.rstrip, json_rules.split('\n')[2:-2])) + ',\n'
@@ -224,7 +224,7 @@ class SchemaColorizer(object):
                     return
 
                 # for tmTheme
-                if re.match(r'^\s*<\?xml', content):
+                if re.match(r'\s*<(?:\?xml|!DOCTYPE|plist)\b', content):
                     plist_content = plistlib.loads(content.encode('utf-8'))
                     plist_content['settings'].extend({
                         "scope": r['scope'],
