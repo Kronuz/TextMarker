@@ -125,13 +125,13 @@ class TextMarkerRestoreCommand(sublime_plugin.ApplicationCommand):
         colorizer.restore_color_scheme()
 
 
-class TextMarkerClearCommand(sublime_plugin.ApplicationCommand):
-    def run(self):
-        erase_colors()
+class TextMarkerClearCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        erase_colors(self.view)
 
 
-class TextMarkerResetCommand(sublime_plugin.ApplicationCommand):
-    def run(self):
+class TextMarkerResetCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
         erase_colors()
         colorizer.setup_color_scheme(self.view.settings())
 
