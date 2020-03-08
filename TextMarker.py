@@ -22,8 +22,10 @@ def regex_escape(string):
         string = string.replace('\\' + c, c)
     return string
 
+def is_whitespace(string):
+	return (not string or string.isspace())
 
-def highlight(view, color=None, when_selection_is_empty=False, add_selections=False, prefix='wh_'):
+def highlight(view, color=None, min_length=4, when_selection_is_empty=False, when_whitespace=False, add_selections=False, prefix='wh_'):
     view_settings = view.settings()
     word_separators = view_settings.get('word_separators')
 
@@ -50,7 +52,7 @@ def highlight(view, color=None, when_selection_is_empty=False, add_selections=Fa
         if sel:
             # If the selection is a range...
             string = view.substr(sel)
-            if string:
+            if len(string) >= min_length and (when_whitespace or not is_whitespace(string)):
                 # If we directly compare sel and view.word(sel), then in compares their
                 # a and b values rather than their begin() and end() values. This means
                 # that a leftward selection (with a > b) will never match the view.word()
@@ -111,8 +113,10 @@ class TextMarkerListener(sublime_plugin.EventListener):
         if settings.get('live'):
             self.live = True
             color = settings.get('live_color') or 'comment'
+            min_length = settings.get('min_length')
             when_selection_is_empty = settings.get('when_selection_is_empty')
-            highlight(view, color=color, when_selection_is_empty=when_selection_is_empty, prefix='whl_')
+            when_whitespace = settings.get('when_whitespace')
+            highlight(view, color=color, min_length=min_length, when_selection_is_empty=when_selection_is_empty, when_whitespace=when_whitespace, prefix='whl_')
         elif self.live:
             erase_colors(view, prefix='whl_')
             self.live = False
@@ -139,15 +143,15 @@ class TextMarkerResetCommand(sublime_plugin.TextCommand):
 class TextMarkerCommand(sublime_plugin.TextCommand):
     def run(self, edit, color=None):
         if color == "<select>":
-            highlight(self.view, when_selection_is_empty=True, add_selections=True)
+            highlight(self.view, min_length=4, when_selection_is_empty=True, when_whitespace=True, add_selections=True)
         elif color == "<input>":
             self.view.window().show_input_panel("Color:", "", self.on_done, None, None)
         else:
-            highlight(self.view, color=color, when_selection_is_empty=True)
+            highlight(self.view, color=color, min_length=4, when_selection_is_empty=True, when_whitespace=True)
 
     def on_done(self, color):
         if color:
-            highlight(self.view, color=color, when_selection_is_empty=True)
+            highlight(self.view, color=color, min_length=4, when_selection_is_empty=True, when_whitespace=True)
 
 
 ################################################################################
