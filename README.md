@@ -52,6 +52,36 @@ Simply use <kbd>Alt</kbd>+<kbd>Space</kbd> to mark selected text.
 ]
 ```
 
+- You can config the color and appearing order in Text Marker Setting:
+  `Preferences - Package Setting - Text Marker Settings - User`
+  
+```json
+{
+	"user":
+	{
+		"default_colors":
+		[
+			"lightgreen",
+			"lightcoral",
+			"lightcyan",
+			"lightgoldenrodyellow",
+			"mistyrose",
+			"olivedrab",
+			"plum",
+			"orange",
+			"mediumslateblue",
+			"teal",
+			"tomato",
+			"peachpuff",
+			"yellowgreen",
+			"whitesmoke",
+		]
+
+	}
+}
+```
+
+
 
 ## License
 
