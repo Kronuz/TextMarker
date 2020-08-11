@@ -58,10 +58,22 @@
 		*/
 		"draw_outlined": false,
 
+		/* MIN LENGTH OF WORDS TO HIGHLIGHT
+			Use this in your user prefs to set the minimum length of selected text to
+			highlight.
+		*/
+		"min_length": 4,
+
 		/* HIGHLIGHT WORDS WHEN SELECTION IS EMPTY
 			Use this in your user prefs to make words highlight when the insertion point
 			is inside of them but they're not actually selected.
 		*/
-		"when_selection_is_empty": true
+		"when_selection_is_empty": true,
+
+		/* HIGHLIGHT WORDS WHEN SELECTION IS WHITESPACE
+			Use this in your user prefs to selected text highlight when the selection
+			is whitespace.
+		*/
+		"when_whitespace": true
 	}
 }
