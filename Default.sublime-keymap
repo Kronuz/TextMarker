@@ -1,4 +1,5 @@
 [
 	{ "keys": [ "alt+space" ], "command": "text_marker",  },
+	{ "keys": [ "alt+shift+space" ], "command": "text_marker_exact_selection",  },
 	{ "keys": [ "alt+escape" ], "command": "text_marker_clear" }
 ]

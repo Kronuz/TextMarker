@@ -25,7 +25,7 @@ def regex_escape(string):
 def is_whitespace(string):
 	return (not string or string.isspace())
 
-def highlight(view, color=None, min_length=4, when_selection_is_empty=False, when_whitespace=False, add_selections=False, prefix='wh_'):
+def highlight(view, color=None, min_length=4, when_selection_is_empty=False, when_whitespace=False, add_selections=False, prefix='wh_', find_all_region=True):
     view_settings = view.settings()
     word_separators = view_settings.get('word_separators')
 
@@ -52,16 +52,20 @@ def highlight(view, color=None, min_length=4, when_selection_is_empty=False, whe
         if sel:
             # If the selection is a range...
             string = view.substr(sel)
-            if len(string) >= min_length and (when_whitespace or not is_whitespace(string)):
-                # If we directly compare sel and view.word(sel), then in compares their
-                # a and b values rather than their begin() and end() values. This means
-                # that a leftward selection (with a > b) will never match the view.word()
-                # of itself. As a workaround, we compare the lengths instead.
-                if len(sel) == len(view.word(sel)):
-                    regex = r'\b%s\b' % regex_escape(string)
-                else:
-                    regex = regex_escape(string)
-                regions.extend(view.find_all(regex))
+            if find_all_region: 
+                if len(string) >= min_length and (when_whitespace or not is_whitespace(string)):
+                    # If we directly compare sel and view.word(sel), then in compares their
+                    # a and b values rather than their begin() and end() values. This means
+                    # that a leftward selection (with a > b) will never match the view.word()
+                    # of itself. As a workaround, we compare the lengths instead.
+                    if len(sel) == len(view.word(sel)):
+                        regex = r'\b%s\b' % regex_escape(string)
+                    else:
+                        regex = regex_escape(string)
+                    regions.extend(view.find_all(regex))
+            else:
+                regions.extend(view_sel)
+
         else:
             # If selection is a point...
             if when_selection_is_empty:
@@ -152,6 +156,10 @@ class TextMarkerCommand(sublime_plugin.TextCommand):
     def on_done(self, color):
         if color:
             highlight(self.view, color=color, min_length=4, when_selection_is_empty=True, when_whitespace=True)
+
+class TextMarkerExactSelectionCommand(sublime_plugin.TextCommand):
+    def run(self, edit, color=None):
+        highlight(self.view, color=color, min_length=4, when_selection_is_empty=True, when_whitespace=True, find_all_region=False)
 
 
 ################################################################################
