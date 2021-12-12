@@ -29,6 +29,8 @@ Simply use <kbd>Alt</kbd>+<kbd>Space</kbd> to mark selected text.
 
 - Being over a word or having some selection, press <kbd>Alt</kbd>+<kbd>Space</kbd> to mark all.
 
+- <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>Space</kbd> to mark only the selection.
+
 - <kbd>Alt</kbd>+<kbd>Escape</kbd> clears all marked text.
 
 - Each time you mark a word a different color will be used (colors are configurable in the settings)
